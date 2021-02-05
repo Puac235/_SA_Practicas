@@ -1,43 +1,47 @@
+/*
 
+Practica 1 / Software Avanzado
+José Francisco Puac Ixcamparic
+201700342
+
+*/
+
+// id del ultimo registro creado en esta practica
 var lastID = '1';
 
-async function listUsers() {
-    console.log('listing');
-    try {
-        const response = await axios.get(`${url}/1449`, {
-            headers: {
-              'Authorization': `token ${token}`
-            }
-        });
-        console.log(response.data);
-    } catch (exception) {
-        process.stderr.write(`ERROR received from ${url}: ${exception}\n`);
-    }
-}
+// token brindado por la API
+var token = '';
 
+// url API brindada
+var url = "https://gorest.co.in/public-api/users";
+
+// Listar el ultimo usuario creado
 async function listUser() {
-    console.log('listing');
-    url = "https://gorest.co.in/public-api/users";
-
+    
+    // Construccion peticion HTTP GET
     const Http = new XMLHttpRequest();
     Http.open("GET", `${url}/${lastID}`, true);
     Http.setRequestHeader("Content-Type", "application/json");
     Http.send();
     Http.onreadystatechange=function(){
+        // Peticion Exitosa
         if(this.readyState==4 && this.status==200)
         {
             var data = JSON.parse(Http.responseText)
             console.log(data);
+            // Verificacion del codigo de la respuesta (200 OK)
             if (data.code == 200)
             {
                 datos = data.data;
                 console.log(datos);
                 
+                // Eliminar registro previo
                 var lastRegister = document.getElementById("lastRegister");
                 while (lastRegister.firstChild) {
                     lastRegister.removeChild(lastRegister.firstChild);
                 }
                 
+                // Creacion visual del nuevo registro
                 var newDiv = document.createElement("div");
                 var att1 = document.createAttribute("class");
                 att1.value = "col-md-6";
@@ -66,9 +70,9 @@ async function listUser() {
                 newDivUpdated.appendChild(newUpdated);
                 newDiv.appendChild(newDivUpdated);
 
-
-                
                 lastRegister.appendChild(newDiv);
+            
+            // Peticion Erronea
             } else {
                 alert("INTENTELO DE NUEVO");
             }
@@ -76,9 +80,10 @@ async function listUser() {
     } 
 }
 
+// Crear un nuevo usuario en la API
 async function createUser() {
-    console.log('creating');
-    url = "https://gorest.co.in/public-api/users";
+    
+    // Recopilacion de datos de la pagina html, estado siempre activo
     var data = {
         name: document.forms["datos"].elements[0].value, 
         gender: document.forms["datos"].elements[1].value, 
@@ -86,35 +91,38 @@ async function createUser() {
         status: "Active"
     };
     
+    // Validacion de campos
     if(data.name == '' || data.email == '')
     {
         alert("DEBE AGREGARLE UN NOMBRE AL ALUMNO.")
         return
     }
-
     if(data.gender != 'Male' && data.gender != 'Female')
     {
         alert("GÉNERO INCORRECTO", "Solo se aceptan \"Male\" y \"Female\".")
         return
     }
-    console.log(data);
-
+    
+    // Construccion peticion HTTP POST
     const Http = new XMLHttpRequest();
     Http.open("POST", url, true);
     Http.setRequestHeader("Content-Type", "application/json");
-    Http.setRequestHeader("Authorization", "Bearer f1ada6fae35b78478e8db876353f4c424684a8ea728322f892a35c843841e959");
+    // se agrega el token de autenticacion
+    Http.setRequestHeader("Authorization", `Bearer ${token}`);
     Http.send(JSON.stringify(data));
     Http.onreadystatechange=function(){
+        // Peticion Exitosa
         if(this.readyState==4 && this.status==200)
         {
             var data = JSON.parse(Http.responseText)
-            console.log(data);
+            // Verificacion del codigo de la respuesta (201 Creacion exitosa)
             if(data.code == 201)
             {
+                // Se asigna el id de la respuesta a la respectiva variable
                 lastID = data.data.id;
                 alert("REGISTRO CREADO :D");
-                console.log(lastID);
             }
+            // Peticion Erronea
             else
             {
                 alert("INTENTELO NUEVAMENTE");
@@ -124,12 +132,12 @@ async function createUser() {
     } 
 }
 
+// Modificar el ultimo usuario en la API creado con esta practica
 async function modifyUser() {
-    console.log('modifying');
-    url = "https://gorest.co.in/public-api/users";
 
     var data = {};
     
+    // Verificacion de los campos ingresados sean los que se van a modificar
     if(document.forms["mod"].elements[0].value != '')
     {
         data.name = document.forms["mod"].elements[0].value;
@@ -148,23 +156,24 @@ async function modifyUser() {
         data.email = document.forms["mod"].elements[2].value;
     }
 
-    
-    console.log(data);
-
+    // Construccion peticion HTTP PUT
     const Http = new XMLHttpRequest();
     Http.open("PUT", `${url}/${lastID}`, true);
     Http.setRequestHeader("Content-Type", "application/json");
-    Http.setRequestHeader("Authorization", "Bearer f1ada6fae35b78478e8db876353f4c424684a8ea728322f892a35c843841e959");
+    // se agrega el token de autenticacion
+    Http.setRequestHeader("Authorization", `Bearer ${token}`);
     Http.send(JSON.stringify(data));
     Http.onreadystatechange=function(){
+        // Peticion Exitosa
         if(this.readyState==4 && this.status==200)
         {
             var data = JSON.parse(Http.responseText)
-            console.log(data);
+            // Verificacion del codigo de la respuesta (200 OK)
             if(data.code == 200)
             {
                 alert("REGISTRO ACTUALIZADO :D");
             }
+            // Peticion Erronea
             else
             {
                 alert("INTENTELO NUEVAMENTE");
@@ -174,23 +183,27 @@ async function modifyUser() {
     }
 }
 
+// Eliminar el ultimo usuario en la API creado con esta practica
 async function deleteUser() {
-    console.log('deleting');
 
+    // Construccion peticion HTTP DELETE
     const Http = new XMLHttpRequest();
     Http.open("DELETE", `${url}/${lastID}`, true);
     Http.setRequestHeader("Content-Type", "application/json");
-    Http.setRequestHeader("Authorization", "Bearer f1ada6fae35b78478e8db876353f4c424684a8ea728322f892a35c843841e959");
+    // se agrega el token de autenticacion
+    Http.setRequestHeader("Authorization", `Bearer ${token}`);
     Http.send();
     Http.onreadystatechange=function(){
+        // Peticion Exitosa
         if(this.readyState==4 && this.status==200)
         {
             var data = JSON.parse(Http.responseText)
-            console.log(data);
+            // Verificacion del codigo de la respuesta (204 DELETED)
             if(data.code == 204)
             {
                 alert("REGISTRO ELIMINADO :D");
             }
+            // Peticion Erronea
             else
             {
                 alert("INTENTELO NUEVAMENTE");
@@ -199,17 +212,3 @@ async function deleteUser() {
         }
     }
 }
-
-// listUsers();
-
-// listUser(1451);
-
-// let data = {name:"José Puac", gender: "Male", email:"puac235@gmail.com", status:"Active"}
-
-// createUser(data);
-
-// let data = {email:"puac1451@gmail.com"}
-
-// modifyUser(1451, data);
-
-// deleteUser(1451);
