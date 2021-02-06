@@ -7,9 +7,9 @@ José Francisco Puac Ixcamparic
 */
 
 // id del ultimo registro creado en esta practica
-var lastID = '1';
+var lastID = '1611';
 
-// token brindado por la API
+// Ingresar token brindado por la API
 var token = '';
 
 // url API brindada
