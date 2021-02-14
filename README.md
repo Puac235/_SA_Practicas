@@ -28,7 +28,7 @@ Para utilizar la práctica es necesario realizar los siguientes pasos:
 1. Seleccionar la opción (1).
 2. Ingresar carnet.
 3. Ingresar Nombre.
-4. El programa te visualiza el JWT generado.
+4. El programa crea un secret especial en base al carnet ingresado, lo asocia al mismo en memoria y se visualiza el JWT generado.
 
 ![Capturas/IMG3.png](Capturas/IMG3.png)
 
