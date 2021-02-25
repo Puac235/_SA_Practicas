@@ -7,7 +7,7 @@
 */
 // Uso de la libreria Express
 const express = require ('express');
-// Puerto 3001
+// Puerto 3002
 const puerto = process.env.PORT || 3002;
 // Utilizacion de cors
 const cors = require('cors');
