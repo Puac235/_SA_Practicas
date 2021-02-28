@@ -5,9 +5,9 @@ José Francisco Puac Ixcamparic
 
 Repositorio de Prácticas Software Avanzado
 
-# [SA] Documentación de Uso Práctica 3
+# [SA] Documentación de Uso Práctica 4
 
-Link video: https://youtu.be/EWb2dPF3stE
+Link video: https://youtu.be/z7gv1G5hFIg
 
 ### Microservicios
 
@@ -25,15 +25,32 @@ Para utilizar la práctica es necesario realizar los siguientes pasos:
     - Ingresar a la carpeta
     - Ejecutar el comando "npm start" para iniciar los servidores es su puerto respectivo.
 
+### ESB
+
+Para utilizar la práctica es necesario realizar los siguientes pasos:
+
+- Tener instalado npm y nodejs
+- Ingresar a su consola de preferencia (en este caso Visual Studio Code) y dirigirse a la ubicación del ESB.
+
+![Capturas/IMG1.png](Capturas/IMG1.png)
+
+- Para todas las carpetas:
+    - Ingresar a la carpeta
+    - Ejecutar el comando "npm install" para instalar las dependencias necesarias para ejecutar el proyecto.
+- Para ejecutar el ESB:
+    - Ingresar a la carpeta
+    - Ejecutar el comando "npm start" para iniciar los servidores es su puerto respectivo.
+    - Tener levantados los microservicios previamente.
+
 ## Funcionalidades del Software
 
 Estas funcionalidades pueden ser testeadas a través de Postman.
 
-- Menú
-1. Solicitar pedido al restaurante
+### Cliente
+- Solicitar pedido al restaurante
 
 ```json
-POST http://localhost:3001/pedido
+POST http://localhost:3000/esb/client/pedido
 {
     "idCliente" : 2,
     "idProducto" : 2,
@@ -57,10 +74,10 @@ Respuesta:
 }
 ```
 
-1. Verificar estado del pedido al restaurante
+- Verificar estado del pedido al restaurante
 
 ```json
-GET http://localhost:3001/estado_restaurante
+GET http://localhost:3000/esb/client/restaurante
 {
     "idPedido" : 2
 }
@@ -82,10 +99,10 @@ Respuesta:
 }
 ```
 
-1. Verificar estado del pedido al repartidor
+- Verificar estado del pedido al repartidor
 
 ```json
-GET http://localhost:3001/estado_repartidor
+GET http://localhost:3000/esb/client/repartidor
 {
     "idPedido" : 3
 }
@@ -107,11 +124,11 @@ Respuesta:
 }
 ```
 
-- Restaurante
-1. Recibir pedido del cliente
+### Restaurante
+- Recibir pedido del cliente
 
 ```json
-GET http://localhost:3002/pedido
+GET http://localhost:3000/esb/restaurant/pedido
 {
     "idPedido" : 1
 }
@@ -133,10 +150,10 @@ Respuesta:
 }
 ```
 
-1. Informar estado del pedido al cliente
+- Informar estado del pedido al cliente
 
 ```json
-POST http://localhost:3002/pedido_cliente
+POST http://localhost:3000/esb/restaurant/cliente
 {
     "idPedido" : 2
 }
@@ -149,10 +166,10 @@ Respuesta:
 }
 ```
 
-1. Avisar al repartidor que ya está listo el pedido
+- Avisar al repartidor que ya está listo el pedido
 
 ```json
-POST http://localhost:3002/pedido_listo
+POST http://localhost:3000/esb/restaurant/listo
 {
     "idPedido" : 3
 }
@@ -166,11 +183,11 @@ Respuesta:
 }
 ```
 
-- Repartidor
-1. Recibir pedido del restaurante
+### Repartidor
+- Recibir pedido del restaurante
 
 ```json
-GET http://localhost:3003/pedido
+GET http://localhost:3000/esb/deliver/pedido
 {
     "idPedido" : 1
 }
@@ -192,10 +209,10 @@ Respuesta:
 }
 ```
 
-1. Informar estado del pedido al cliente
+- Informar estado del pedido al cliente
 
 ```json
-POST http://localhost:3003/pedido_cliente
+POST http://localhost:3000/esb/deliver/cliente
 {
     "idPedido" : 2
 }
@@ -208,10 +225,10 @@ Respuesta:
 }
 ```
 
-1. Marcar como entregado
+-  Marcar como entregado
 
 ```json
-POST http://localhost:3003/pedido_entregado
+POST http://localhost:3000/esb/deliver/entregado
 {
     "idPedido" : 2
 }

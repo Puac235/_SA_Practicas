@@ -11,6 +11,7 @@ const fetch = require("node-fetch");
 var url = 'http://localhost:3001';
 // Funcion para realizar un pedido
 const pedido =  (req, res) => {
+    // realizar petición al servidor respectivo
     fetch(`${url}/pedido`, {
         method: 'POST',
         headers: {
@@ -22,6 +23,7 @@ const pedido =  (req, res) => {
         return response.text();
     })
     .then(function(data) {
+        // retornar resultado
         var data = JSON.parse(data);
         if(data.status){
             res.send({status:data.status, code:data.code, data:data.data, msg:data.msg});
@@ -31,6 +33,7 @@ const pedido =  (req, res) => {
         }
     })
     .catch(function(err) {
+        // Error de servidor
         console.error(err);
         res.send({status:false, code:500, Error:{type:"InternalError", msg:"Internal Server Error."}});
     });    
@@ -38,6 +41,7 @@ const pedido =  (req, res) => {
 
 // Funcion para obtener el estado del pedido segun el restaurante
 const estado_restaurante = (req, res) => {
+    // realizar petición al servidor respectivo
     fetch(`${url}/estado_restaurante`, {
         method: 'POST',
         headers: {
@@ -49,6 +53,7 @@ const estado_restaurante = (req, res) => {
         return response.text();
     })
     .then(function(data) {
+        // retornar resultado
         var data = JSON.parse(data);
         if(data.status){
             res.send({status:data.status, code:data.code, data:data.data});
@@ -58,6 +63,7 @@ const estado_restaurante = (req, res) => {
         }
     })
     .catch(function(err) {
+        // Error de servidor
         console.error(err);
         res.send({status:false, code:500, Error:{type:"InternalError", msg:"Internal Server Error."}});
     });
@@ -65,7 +71,7 @@ const estado_restaurante = (req, res) => {
 
 // Funcion para obtener el estado del pedido segun el repartidor
 const estado_repartidor = (req, res) => {
-    
+    // realizar petición al servidor respectivo
     fetch(`${url}/estado_repartidor`, {
         method: 'POST',
         headers: {
@@ -77,6 +83,7 @@ const estado_repartidor = (req, res) => {
         return response.text();
     })
     .then(function(data) {
+        // retornar resultado
         var data = JSON.parse(data);
         if(data.status){
             res.send({status:data.status, code:data.code, data:data.data});
@@ -86,6 +93,7 @@ const estado_repartidor = (req, res) => {
         }
     })
     .catch(function(err) {
+        // Error de servidor
         console.error(err);
         res.send({status:false, code:500, Error:{type:"InternalError", msg:"Internal Server Error."}});
     });

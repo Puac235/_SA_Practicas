@@ -1,7 +1,7 @@
 /*
     Software Avanzado
     Práctica 4
-    EDB
+    ESB
     José Francisco Puac Ixcamparic
     201700342
 

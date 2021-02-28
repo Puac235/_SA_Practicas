@@ -11,7 +11,7 @@ const fetch = require("node-fetch");
 var url = 'http://localhost:3003';
 // Funcion para que el repartidor reciba un pedido del restaurante
 const pedido =  (req, res) => {
-    
+    // realizar petición al servidor respectivo
     fetch(`${url}/pedido`, {
         method: 'POST',
         headers: {
@@ -23,6 +23,7 @@ const pedido =  (req, res) => {
         return response.text();
     })
     .then(function(data) {
+        // retornar resultado
         var data = JSON.parse(data);
         if(data.status){
             res.send({status:data.status, code:data.code, data:data.data, msg:data.msg});
@@ -32,6 +33,7 @@ const pedido =  (req, res) => {
         }
     })
     .catch(function(err) {
+        // Error de servidor
         console.error(err);
         res.send({status:false, code:500, Error:{type:"InternalError", msg:"Internal Server Error."}});
     });
@@ -39,7 +41,7 @@ const pedido =  (req, res) => {
 
 // Funcion para retornar el estado del pedido segun el repartidor
 const estado_pedido = (req, res) => {
-    
+    // realizar petición al servidor respectivo
     fetch(`${url}/pedido_cliente`, {
         method: 'POST',
         headers: {
@@ -51,6 +53,7 @@ const estado_pedido = (req, res) => {
         return response.text();
     })
     .then(function(data) {
+        // retornar resultado
         var data = JSON.parse(data);
         if(data.status){
             res.send({status:data.status, code:data.code, estado:data.estado, idPedido:data.idPedido});
@@ -60,6 +63,7 @@ const estado_pedido = (req, res) => {
         }
     })
     .catch(function(err) {
+        // Error de servidor
         console.error(err);
         res.send({status:false, code:500, Error:{type:"InternalError", msg:"Internal Server Error."}});
     });
@@ -67,7 +71,7 @@ const estado_pedido = (req, res) => {
 
 // Funcion de entrega del pedido del repartidor
 const pedido_entregado = (req, res) => {
-    
+    // realizar petición al servidor respectivo
     fetch(`${url}/pedido_entregado`, {
         method: 'POST',
         headers: {
@@ -79,6 +83,7 @@ const pedido_entregado = (req, res) => {
         return response.text();
     })
     .then(function(data) {
+        // retornar resultado
         var data = JSON.parse(data);
         if(data.status){
             res.send({status:data.status, code:data.code, estado:data.estado, idPedido:data.idPedido, msg:data.msg});
@@ -88,6 +93,7 @@ const pedido_entregado = (req, res) => {
         }
     })
     .catch(function(err) {
+        // Error de servidor
         console.error(err);
         res.send({status:false, code:500, Error:{type:"InternalError", msg:"Internal Server Error."}});
     });
