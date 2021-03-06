@@ -5,46 +5,46 @@ José Francisco Puac Ixcamparic
 
 Repositorio de Prácticas Software Avanzado
 
-# [SA] Documentación de Uso Práctica 4
+# [SA] Documentación de Uso Práctica 5
 
-Link video: https://youtu.be/z7gv1G5hFIg
-
-### Microservicios
+## Artefacto
 
 Para utilizar la práctica es necesario realizar los siguientes pasos:
 
-- Tener instalado npm y nodejs
-- Ingresar a su consola de preferencia (en este caso Visual Studio Code) y dirigirse a la ubicación de las carpetas Cliente, Repartidor y Restaurante.
+- Si se encuentra en Windows instalar GitBash.
+- Tener instalado npm y nodejs.
+- Ingresar a su consola utilizando GitBash y dirigirse a la ubicación de las carpetas Cliente, Repartidor, Restaurante y EBS.
 
 ![Capturas/IMG.png](Capturas/IMG.png)
 
 - Para todas las carpetas:
     - Ingresar a la carpeta
-    - Ejecutar el comando "npm install" para instalar las dependencias necesarias para ejecutar el proyecto.
-- Para ejecutar cada microservicio:
-    - Ingresar a la carpeta
-    - Ejecutar el comando "npm start" para iniciar los servidores es su puerto respectivo.
+    - Ejecutar el comando "sh artefacto.sh" para instalar las dependencias necesarias para ejecutar el proyectoy posteriormente iniciar los servidores es su puerto respectivo.
 
-### ESB
+## Archivos para Funcionamiento del Artefacto
 
-Para utilizar la práctica es necesario realizar los siguientes pasos:
-
-- Tener instalado npm y nodejs
-- Ingresar a su consola de preferencia (en este caso Visual Studio Code) y dirigirse a la ubicación del ESB.
+### ARTEFACTO.SH
+Archivo utilizado para ejecutar los comandos necesarios de instalación de dependencias y ejecución del programa.
 
 ![Capturas/IMG1.png](Capturas/IMG1.png)
 
-- Para todas las carpetas:
-    - Ingresar a la carpeta
-    - Ejecutar el comando "npm install" para instalar las dependencias necesarias para ejecutar el proyecto.
-- Para ejecutar el ESB:
-    - Ingresar a la carpeta
-    - Ejecutar el comando "npm start" para iniciar los servidores es su puerto respectivo.
-    - Tener levantados los microservicios previamente.
+### PACKAGE.JSON
+Archivo que contiene las dependencias necesarias para la ejecución del proyecto, así como directrices especiales para cada comando en específico.
+
+![Capturas/IMG2.png](Capturas/IMG2.png)
+
+### SERVER.JS
+Archivo principal del servidor, para ejecutar las funcionalidades principales del microservicio.
+
+![Capturas/IMG3.png](Capturas/IMG3.png)
 
 ## Funcionalidades del Software
 
 Estas funcionalidades pueden ser testeadas a través de Postman.
+
+### Ejecución de Artefactos
+
+![Capturas/IMG4.png](Capturas/IMG4.png)
 
 ### Cliente
 - Solicitar pedido al restaurante
@@ -73,7 +73,7 @@ Respuesta:
     "msg": "Producto Solicitado exitosamente."
 }
 ```
-
+![Capturas/IMG5.png](Capturas/IMG5.png)
 - Verificar estado del pedido al restaurante
 
 ```json
@@ -98,7 +98,7 @@ Respuesta:
     }
 }
 ```
-
+![Capturas/IMG6.png](Capturas/IMG6.png)
 - Verificar estado del pedido al repartidor
 
 ```json
@@ -123,7 +123,7 @@ Respuesta:
     }
 }
 ```
-
+![Capturas/IMG7.png](Capturas/IMG7.png)
 ### Restaurante
 - Recibir pedido del cliente
 
@@ -149,7 +149,7 @@ Respuesta:
     "msg": "Pedido Recibido a Restaurante Exitosamente."
 }
 ```
-
+![Capturas/IMG8.png](Capturas/IMG8.png)
 - Informar estado del pedido al cliente
 
 ```json
@@ -165,7 +165,7 @@ Respuesta:
     "idPedido": 2
 }
 ```
-
+![Capturas/IMG9.png](Capturas/IMG9.png)
 - Avisar al repartidor que ya está listo el pedido
 
 ```json
@@ -182,7 +182,7 @@ Respuesta:
     "msg": "Pedido Listo para el Repartidor."
 }
 ```
-
+![Capturas/IMG10.png](Capturas/IMG10.png)
 ### Repartidor
 - Recibir pedido del restaurante
 
@@ -208,7 +208,7 @@ Respuesta:
     "msg": "Pedido Recibido a Repartidor Exitosamente."
 }
 ```
-
+![Capturas/IMG11.png](Capturas/IMG11.png)
 - Informar estado del pedido al cliente
 
 ```json
@@ -224,7 +224,7 @@ Respuesta:
     "idPedido": 2
 }
 ```
-
+![Capturas/IMG12.png](Capturas/IMG12.png)
 -  Marcar como entregado
 
 ```json
@@ -241,3 +241,4 @@ Respuesta:
     "msg": "Pedido entregado al Cliente exitosamente."
 }
 ```
+![Capturas/IMG13.png](Capturas/IMG13.png)
