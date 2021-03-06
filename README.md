@@ -11,32 +11,35 @@ Repositorio de Prácticas Software Avanzado
 
 Para utilizar la práctica es necesario realizar los siguientes pasos:
 
-- Si se encuentra en Windows instalar GitBash.
 - Tener instalado npm y nodejs.
-- Ingresar a su consola utilizando GitBash y dirigirse a la ubicación de las carpetas Cliente, Repartidor, Restaurante y EBS.
+- Dirigirse a la ubicación de las carpetas Cliente, Repartidor, Restaurante y EBS.
 
 ![Capturas/IMG.png](Capturas/IMG.png)
 
 - Para todas las carpetas:
     - Ingresar a la carpeta
-    - Ejecutar el comando "sh artefacto.sh" para instalar las dependencias necesarias para ejecutar el proyectoy posteriormente iniciar los servidores es su puerto respectivo.
+    - Descomprimir el archivo "artifact.js" de cada microservicio, para obtener los archivos necesarios para ejecutarlo.
+    - Ejecutar el comando "node server.js" para levantar el microservicio en su puesto respectivo.
+
+![Capturas/IMG17.png](Capturas/IMG17.png)
+
+![Capturas/IMG18.png](Capturas/IMG18.png)
+
 
 ## Archivos para Funcionamiento del Artefacto
 
-### ARTEFACTO.SH
-Archivo utilizado para ejecutar los comandos necesarios de instalación de dependencias y ejecución del programa.
+### GULPFILE.JS
+Archivo utilizado para la creación del artefacto.
 
-![Capturas/IMG1.png](Capturas/IMG1.png)
+![Capturas/IMG15.png](Capturas/IMG15.png)
 
-### PACKAGE.JSON
-Archivo que contiene las dependencias necesarias para la ejecución del proyecto, así como directrices especiales para cada comando en específico.
+## CREACIÓN DEL ARTEFACTO
 
-![Capturas/IMG2.png](Capturas/IMG2.png)
+En cada carpeta del microservicio, ejecutar el comando "gulp" para generar el artefacto en la carpeta dist, y posteriormente comprimirlo en el archivo "artifact.zip"
 
-### SERVER.JS
-Archivo principal del servidor, para ejecutar las funcionalidades principales del microservicio.
+![Capturas/IMG14.png](Capturas/IMG14.png)
 
-![Capturas/IMG3.png](Capturas/IMG3.png)
+![Capturas/IMG16.png](Capturas/IMG16.png)
 
 ## Funcionalidades del Software
 
