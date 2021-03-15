@@ -23,6 +23,8 @@ const app = express();
     app.use('/', routes);
 
 // Inicializacion del servidor
-app.listen( puerto, () =>{
+let server = app.listen( puerto, () =>{
     console.log("Client server running in port "+ puerto);
 });
+
+module.exports  = server;
