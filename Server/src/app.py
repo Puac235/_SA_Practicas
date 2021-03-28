@@ -19,7 +19,7 @@ app = Flask(__name__)
 CORS(app)
 socket = SocketIO(app, cors_allowed_origins="*")
 
-myclient = MongoClient('mongodb://localhost:27017/',username = 'puac', password = '1234' )
+myclient = MongoClient('mongodb://35.226.26.19:27017/',username = 'puac', password = '1234' )
 mydb = myclient["dbSA"]
 
 
