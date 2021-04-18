@@ -6,6 +6,11 @@ services:
             - '80:80'
         depends_on: 
             - database
+            - names
+    names:
+        build: './Server2'
+        ports:
+            - '3000:80'
     database:
         image: 'mongo'
         container_name: 'DBSA'

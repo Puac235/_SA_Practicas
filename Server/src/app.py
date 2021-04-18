@@ -19,7 +19,7 @@ app = Flask(__name__)
 CORS(app)
 socket = SocketIO(app, cors_allowed_origins="*")
 
-myclient = MongoClient('mongodb://35.226.26.19:27017/',username = 'puac', password = '1234' )
+myclient = MongoClient('mongodb://52.91.148.92:27017/',username = 'puac', password = '1234' )
 mydb = myclient["dbSA"]
 
 
@@ -49,11 +49,19 @@ def getUsers():
 @app.route('/addUser', methods = ['POST'])
 def addUser():
     conection = mydb["usuarios"]
+    response = requests.get('http://52.91.148.92:3000/getName')
+    '''
     datos = json.loads(request.data)
 
-    x = conection.insert_one(datos)
-    return {'status':True, 'id': str(x.inserted_id), 'nombre': datos['nombre'], 'user': datos['user']}
+    datos['nombre'] = r.text['nombre']
+    datos['user'] = r.text['user']
 
+    x = conection.insert_one(datos)
+
+    
+    return {'status':True, 'id': str(x.inserted_id), 'nombre': datos['nombre'], 'user': datos['user']}
+    '''
+    return response.text
 
 if __name__ == '__main__':
     socket.run(app, host='0.0.0.0', port=80)
