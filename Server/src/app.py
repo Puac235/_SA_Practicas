@@ -50,18 +50,16 @@ def getUsers():
 def addUser():
     conection = mydb["usuarios"]
     response = requests.get('http://52.91.148.92:3000/getName')
-    '''
+    responsel = json.loads(response.text)
     datos = json.loads(request.data)
 
-    datos['nombre'] = r.text['nombre']
-    datos['user'] = r.text['user']
+    datos['nombre'] = responsel['nombre']
+    datos['user'] = responsel['user']
 
     x = conection.insert_one(datos)
 
     
     return {'status':True, 'id': str(x.inserted_id), 'nombre': datos['nombre'], 'user': datos['user']}
-    '''
-    return response.text
 
 if __name__ == '__main__':
     socket.run(app, host='0.0.0.0', port=80)
