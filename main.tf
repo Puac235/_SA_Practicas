@@ -4,13 +4,9 @@ provider "google" {
     region = "us-west-1"
 }
 
-resource "random_id" "instance_id" {
-  byte_length = 8
-}
-
 // crear la VM
 resource "google_compute_instance" "default" {
-  name = "terraform-201700342-${random_id.instance_id.hex}"
+  name = "terraform-copia"
   machine_type = "f1-micro"
   zone = "us-central1-a"
 
@@ -27,21 +23,11 @@ resource "google_compute_instance" "default" {
 
     access_config {
         //leer la ip publica
-
     }
   }
 
   metadata = {
     ssh-keys = "josef:${file("gcloud-ssh-vm.pub")}"
-  }
-}
-
-resource "google_compute_firewall" "default" {
-  name = "terraform-201700342-python-5000"
-  network = "default"
-  allow {
-    protocol = "tcp"
-    ports = ["5000"]
   }
 }
 
